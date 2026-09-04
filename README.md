@@ -1,165 +1,223 @@
-# 🧠 Deep Autonomous AI Research Agent
+# 🧠 AI Research Intelligence Agent
 
-A production-style **Autonomous Research Agent** capable of independently planning, searching, analyzing, and generating structured research reports — fully powered by **local large language models** with zero API dependency.
+An autonomous AI research assistant built with Python, Streamlit, Ollama, and web-search tools.
 
-Designed with modern **agentic architecture**, this system simulates real-world AI workflows used in advanced research environments.
+The system accepts a research topic, creates a structured research plan, performs web-based information gathering, and uses a locally hosted Large Language Model to generate research-oriented responses.
 
----
-
-## 🚀 Live Demo
-
-🎥 Demo Video:  
-https://drive.google.com/file/d/157i5H8gS74B6A9sNOCUMANwP1uc5dTDe/view?usp=sharing
-
-💻 GitHub Repository:  
-https://github.com/BharkaviPM/local-autonomous-ai-agent
+The project demonstrates how agentic AI concepts can be combined with local LLM inference and external tools to build an AI-powered research workflow.
 
 ---
 
-## ⭐ Overview
+## 🚀 Project Overview
 
-This project implements a multi-step autonomous AI agent that can:
+The AI Research Intelligence Agent is designed to automate multiple stages of a research workflow.
 
-✅ Plan complex research tasks  
-✅ Search the web for relevant sources  
-✅ Analyze retrieved information  
-✅ Generate structured research reports  
-✅ Operate entirely on local LLMs (no API costs)  
+Instead of simply generating an answer from a language model, the system follows an agent-based process:
 
-The architecture mirrors production-grade agent systems.
+- Understand the research query
+- Break the query into actionable tasks
+- Perform information retrieval
+- Collect relevant research information
+- Process the gathered information
+- Generate a structured response
+
+The system uses **Ollama** for local LLM inference, reducing dependency on paid external LLM APIs.
 
 ---
 
 ## 🧠 Agent Architecture
 
-<img width="810" height="567" alt="Image" src="https://github.com/user-attachments/assets/cce212a3-bb01-4c08-9335-0e9fcdc6eb8c" />
----
+The application follows a modular agent-based architecture:
 
-This modular design enables scalability and future enhancements such as:
+```text
+                  User Research Query
+                          |
+                          v
+                    Streamlit UI
+                          |
+                          v
+                   Planner Agent
+                          |
+                          v
+                  Research Plan
+                          |
+                          v
+                  Executor Agent
+                          |
+              +-----------+-----------+
+              |                       |
+              v                       v
+        Web Search Tool        PDF Downloader
+              |                       |
+              +-----------+-----------+
+                          |
+                          v
+                   Research Agent
+                          |
+                          v
+                    Ollama / Qwen
+                          |
+                          v
+              Structured Research Response
 
-- Reflection agents  
-- Memory systems  
-- Multi-agent collaboration  
-- Knowledge graphs  
+This modular design separates planning, execution, information retrieval, and response generation.
 
----
+🔥 Key Features
+✅ Autonomous Research Planning
 
-## 🔥 Key Features
+The Planner Agent analyzes the user's research question and decomposes it into smaller research tasks.
 
-### ✅ Autonomous Planning
-The planner agent decomposes complex queries into actionable research steps.
+✅ Tool-Augmented Research
 
-### ✅ Tool-Augmented Intelligence
-Integrates external tools to ground responses in real-world data.
+The Executor Agent can interact with external tools such as web search to retrieve information relevant to the research topic.
 
-### ✅ Local LLM Execution
-Runs fully offline using **Ollama**, eliminating API dependency and operational cost.
+✅ Local LLM Inference
 
-### ✅ Production-Oriented Design
-Built with modular agents to reflect real AI engineering practices.
+The system uses Ollama to run the language model locally instead of relying on paid external LLM APIs.
 
-### ✅ Interactive UI
-Streamlit-powered interface for real-time research workflows.
+✅ Agent-Based Workflow
 
----
+Different components are responsible for planning, research execution, and response generation, creating a modular agentic workflow.
 
-## 🛠️ Tech Stack
+✅ Interactive Web Interface
 
-**Core Technologies**
+The application provides a Streamlit-based interface through which users can submit research queries and interact with the system.
 
-- Python  
-- Streamlit  
-- Ollama  
-- Local Large Language Models  
-- Agent-Based Architecture  
+✅ PDF Resource Support
 
-**AI Concepts Applied**
+The project includes functionality for downloading PDF resources when required during the research process.
 
-- Agentic AI  
-- Tool Use  
-- Autonomous Workflows  
-- Prompt Engineering  
-- System Design  
----
+✅ Conversation Memory
 
-## ⚙️ Installation Guide
+A modular conversation-memory component allows the system to maintain information from the interaction.
 
-### 1️⃣ Clone the Repository
+🛠️ Technology Stack
+Programming
+Python
+Streamlit
+AI / LLM
+Ollama
+Qwen3:4B
+Local Large Language Model inference
+Prompt Engineering
+Agentic AI
+Research & Tools
+DDGS Web Search
+Requests
+PDF Downloader
+Conversation Memory
+Architecture
+Multi-agent workflow
+Task decomposition
+Tool integration
+Modular AI system design
+🤖 Local LLM
 
-```bash
-git clone https://github.com/BharkaviPM/local-autonomous-ai-agent.git
-cd local-autonomous-ai-agent
-2️⃣ Create Virtual Environment
+The current implementation is configured to use:
+
+qwen3:4b
+
+through Ollama.
+
+The model performs the language-generation and reasoning tasks required by the research workflow.
+
+Using a local model provides:
+
+No external LLM API dependency
+Local inference
+Greater control over model configuration
+Reduced API usage costs
+
+⚙️ Installation
+1. Clone the Repository
+git clone https://github.com/JeetMakadiya9/AI-Research-Agent.git
+cd AI-Research-Agent
+2. Create a Virtual Environment
 python -m venv venv
+
+Activate the environment on Windows:
+
 venv\Scripts\activate
-(Mac/Linux)
+
+For Linux/macOS:
 
 source venv/bin/activate
-3️⃣ Install Dependencies
-pip install -r requirements.txt
-🧠 Install Ollama (Required)
-Download:
+3. Install Dependencies
 
-👉 https://ollama.com
+Install the required Python packages:
 
-Pull a recommended model:
+pip install streamlit ollama requests ddgs
+🧠 Ollama Setup
 
-ollama pull llama3
-OR for stronger reasoning:
+Install Ollama on your system and make sure the Ollama service is running.
 
-ollama pull mistral
-▶️ Running the Agent
-Launch Streamlit App
-streamlit run app.py
-Your app will open at:
+Pull the required model:
 
-http://localhost:8501
+ollama pull qwen3:4b
+
+Verify the installed model:
+
+ollama list
+
+The output should contain:
+
+qwen3:4b
+▶️ Running the Application
+
+
+Open the address in your browser to interact with the research agent.
+
 🧪 Example Research Queries
-Try high-complexity prompts:
 
-Impact of artificial intelligence on early cancer detection
-Agentic AI vs traditional LLM workflows
+The system can be used for topics such as:
+
+Impact of artificial intelligence on healthcare
+Applications of generative AI in software engineering
+Future of autonomous AI agents
+Applications of AI in cybersecurity
 Quantum computing applications in cryptography
-Neural mechanisms behind memory formation
-💡 Why This Project Matters
-Most academic AI projects focus only on models.
 
-This system focuses on:
+The agent converts the research question into smaller tasks and performs the corresponding research workflow.
 
-👉 AI system design
-👉 autonomous workflows
-👉 tool-augmented reasoning
+🔄 Research Workflow
 
-These are the foundations of modern AI engineering.
+The overall workflow is:
 
-🔮 Future Improvements
-Planned upgrades include:
+1. User Input
 
-Reflection Agent for self-evaluation
+The user enters a research question through the Streamlit interface.
 
-Persistent long-term memory
+2. Planning
 
-Multi-agent collaboration
+The Planner Agent analyzes the query and generates a structured research plan.
 
-Knowledge graph integration
+3. Task Execution
 
-Research report export (PDF)
+The Executor Agent processes the planned research tasks.
 
-Cloud deployment
+4. Information Retrieval
 
-🎯 Ideal Use Cases
-Academic research assistance
+The system uses web-search tools to retrieve relevant information.
 
-Technical literature reviews
+5. Resource Processing
 
-Emerging technology analysis
+Relevant resources, including PDF resources when required, can be collected for further processing.
 
-Autonomous knowledge discovery
+6. Local LLM Processing
 
-📜 License
-This project is licensed under the MIT License — feel free to use, modify, and build upon it.
+The collected research information is processed using the locally hosted Qwen3:4B model through Ollama.
 
-👩‍💻 Author
-Bharkavi P M
+7. Response Generation
 
-AI Engineer | Agentic AI | Autonomous Systems | LLM Applications
+The Research Agent generates a structured research-oriented response for the user.
+
+👨‍💻 Author
+
+Jeet Makadiya
+
+M.Tech Computer Science & Engineering
+Artificial Intelligence & Machine Learning
+
+GitHub:
+
+https://github.com/JeetMakadiya9
